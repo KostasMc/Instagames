@@ -1,0 +1,43 @@
+@using Microsoft.AspNet.Identity;
+@model Instagames.WebApp.Models.HomeViewModel.IndexViewModel
+
+@{
+    ViewBag.Title = "Home – InstaGames";
+}
+<!-- loader Start -->
+<div id="loading">
+    <div id="loading-center">
+    </div>
+</div>
+<!-- loader END -->
+@Html.Partial("_DetailsViewModal")
+<!-- Slider Start -->
+
+@Html.Partial("~/Views/Home/IndexPartials/Slider.cshtml")
+
+<!-- Slider End -->
+<!-- MainContent -->
+
+@Html.Partial("~/Views/Home/IndexPartials/Latest.cshtml")
+
+@Html.Partial("~/Views/Home/IndexPartials/Upcoming.cshtml")
+
+@Html.Partial("~/Views/Home/IndexPartials/TopTen.cshtml")
+
+@Html.Partial("~/Views/Home/IndexPartials/Suggested.cshtml")
+
+@Html.Partial("~/Views/Home/IndexPartials/Parallax.cshtml")
+
+@Html.Partial("~/Views/Home/IndexPartials/Trending.cshtml")
+
+@Html.Partial("~/Views/Home/IndexPartials/DevelopedBy.cshtml")
+
+
+<!-- MainContent End-->
+@section scripts{
+    @Scripts.Render("~/bundles/DetailsModalScript")
+    <script> var userId = "@HttpContext.Current.User.Identity.GetUserId()"; </script>
+    @Scripts.Render("~/bundles/MyList")
+    @Scripts.Render("~/bundles/Rating")
+}
+

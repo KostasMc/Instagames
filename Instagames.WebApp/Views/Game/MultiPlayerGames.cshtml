@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Multiplayer Games -InstaGames";
+    Layout = "~/Views/Shared/_NavbarOnlyLayout.cshtml";
+}
+
+<!-- loader Start -->
+<div id="loading">
+    <div id="loading-center">
+    </div>
+</div>
+<!-- loader END -->
+<!-- Wrapper Start -->
+<div class="container">
+    <div class="wrapper">
+        <div class="iq-comingsoon pt-5">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 text-center">
+                        <div class="iq-comingsoon-info">
+                            <a href="~/home/index">
+                                <img src="/Content/images/logo.png" class="img-fluid w-25" width="200" alt="">
+                            </a>
+                            <h2 class="mt-4 mb-1">Stay tunned, we're launching MultiPlayer Games very soon</h2>
+                            <p>We are working very hard to give you the best experience possible!</p>
+                            <img class="loading-img" src="~/Content/images/ajax-loader.gif" />
+                            <ul class="countdown d-flex align-items-center list-inline">
+                                <li class="col-md-6 col-lg-3">
+                                    <div class="iq-card">
+                                        <div class="iq-card-body">
+                                            <span id="days" data-days></span>Days
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6 col-lg-3">
+                                    <div class="iq-card">
+                                        <div class="iq-card-body">
+                                            <span id="hours" data-hours></span>Hours
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6 col-lg-3">
+                                    <div class="iq-card">
+                                        <div class="iq-card-body">
+                                            <span id="minutes" data-minutes></span>Minutes
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6 col-lg-3">
+                                    <div class="iq-card">
+                                        <div class="iq-card-body">
+                                            <span id="seconds" data-seconds></span>Seconds
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-5">
+                    <div class="col-lg-12 text-center">
+
+                        <a href="~/home/index" class="btn btn-outline-primary mb-3 mt-2 btn-sm"><i class="fa fa-home">&nbsp;</i>Return</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Wrapper END -->
+
+@section scripts{
+
+    <!--Count Down Timer Script -->
+    <script>
+        $(document).ready(function () {
+            $(".loading-img").show();
+            setInterval(function () {
+                $(".loading-img").hide();
+                let countDownDate = new Date("Jan 5, 2024 15:00:00").getTime();
+                let now = new Date().getTime();
+                let distance = countDownDate - now;
+
+                let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                $("#days").html(days);
+                $("#hours").html(hours);
+                $("#minutes").html(minutes);
+                $("#seconds").html(seconds);
+            },
+                1000);
+        });
+    </script>
+}

@@ -1,0 +1,70 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Instagames.Entities;
+using Instagames.Entities.Domain_Models;
+
+namespace Instagames.WebApp.Models.GameViewModels
+{
+    public class SinglePlayerViewModel
+    {
+        private List<Category> _allCategories;
+        private List<Game> _allGames;
+        private ApplicationUser appuser;
+        private List<UserGameRatings> _ratedGame;
+
+        public SinglePlayerViewModel(List<Game> allGames, List<Category> allCategories , ApplicationUser user, List<UserGameRatings> ratedGame)
+        {
+            _allGames = allGames;
+            _allCategories = allCategories;
+            appuser = user;
+            _ratedGame = ratedGame;
+        }
+
+        public List<Game> MyList
+        {
+            get { return appuser.UserList.ToList(); }
+        }
+
+        public List<UserGameRatings> RatedGames
+        {
+            get { return _ratedGame; }
+        }
+
+        public Game RandomGame { get; set; }
+
+        public IEnumerable<Game> GamesForChildren
+        {
+            get { return _allGames.Where(g => g.Pegi.PegiAge < 16).ToList(); }
+        }
+
+        public IEnumerable<Game> BestActionGames
+        {
+            get { return _allGames
+                .Where(g =>g.GameCategories.Any(c=>c.Type == "Action"))
+                .OrderByDescending(g => g.Rating).ToList(); }
+        }
+
+        public List<Game> GamesWeRecommend
+        {
+            get
+            {
+                return _allGames.Where(g => g.IsReleased && g.GameDevelopers.Any(d => d.IsInstaGamesDev))
+                    .OrderByDescending(g => g.Rating).ToList();
+            }
+        }  
+        
+        public IEnumerable<Game> GamesReleased2021
+        {
+            get
+            {
+                return _allGames.Where(g => g.IsReleased && g.ReleaseDate.Year == 2021).OrderByDescending(g => g.Rating)
+                    .ToList();
+            }
+        }
+
+        public IEnumerable<Category> Categories
+        {
+            get { return _allCategories; }
+        }
+    }
+}

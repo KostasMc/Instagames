@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.3" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Quartz" Version="3.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CheckSubscribersJob\CheckSubscribersJob.csproj" />
+    <ProjectReference Include="..\Instagames.Database\Instagames.Database.csproj" />
+    <ProjectReference Include="..\Instagames.Entities\Instagames.Entities.csproj" />
+    <ProjectReference Include="..\Instagames.WebApp\Instagames.WebApp.csproj" />
+  </ItemGroup>
+
+</Project>

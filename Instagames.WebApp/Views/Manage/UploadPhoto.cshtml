@@ -1,0 +1,31 @@
+﻿@model Instagames.WebApp.Models.ManageViewModels.UploadPhotoViewModel
+
+<div class="col-lg-4 mb-3">
+    <div class="sign-user_card text-center">
+        <div class="upload_profile d-inline-block">
+
+            @if (Model.Photo == null)
+            {
+                <img src="~/Content/images/user/user.jpg" class="img-fluid img-thumbnail d-block mx-auto mb-3" alt="user" height="150" width="150">
+            }
+            else
+            {
+                <img src="@Model.Photo" class="profile-pic img-thumbnail img-fluid d-block mx-auto mb-3" alt="user" height="150" width="150">
+            }
+            <div class="p-image">
+                <i id="submit-form" class="ri-pencil-line upload-button" title="Upload your image",></i>
+
+                @using (Html.BeginForm("UploadPhoto", "Manage", FormMethod.Post, new { id = "photo-form", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.TextBoxFor(m => m.PhotoCreate, new { @class = "file-upload", type = "file", accept = "image/*" })
+                    @Html.ValidationMessageFor(m => m.PhotoCreate, "", new { @class = "text-primary" })
+                }
+            </div>
+        </div>
+        <div class="text-danger"><small>Only .jpg images allowed</small></div>
+        <h4 class="mb-3">@Model.Username</h4>
+        <p><strong>Member since: </strong>@Model.RegistrationDate </p>
+
+    </div>
+</div>
